@@ -2,7 +2,7 @@
 
 
 Website:
-https://skullpunks.github.io/Indexx500_Interface/
+Website: https://skullpunks.github.io/Indexx500-Crypto_Dashboard/
 
 Faucet:
 https://testnet.binance.org/faucet-smart

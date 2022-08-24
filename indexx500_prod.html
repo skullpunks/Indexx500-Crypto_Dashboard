@@ -1571,7 +1571,7 @@
 			window.contract = await loadIcoContract();
 			const account = await getCurrentAccount();
 			var gas = await window.web3.eth.getGasPrice();
-			var to = $('#get_contri').val();
+			var to = $('#contri').val();
 
 			let coolNumber = await window.contract.methods.contributions(to).call();
 			document.getElementById("get_contri").textContent = web3.utils.fromWei(coolNumber, 'ether');
