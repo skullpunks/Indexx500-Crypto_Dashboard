@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="en">
+  <link rel="stylesheet" href="style.css" />
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Indexx Crypto</title>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  </head>
+  <style>
+    input[type="text"],
+    input[type="number"],
+    input[type="datetime-local"],
+    select {
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 20%;
+      height: 4%;
+      background-color: rgb(3, 151, 35);
+      color: white;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #51da63;
+      color: white;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #3b8303;
+    }
+
+    div {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 10px;
+    }
+
+    .nine h1 {
+      text-align: center;
+      font-size: 50px;
+      text-transform: uppercase;
+      color: #222;
+      letter-spacing: 1px;
+      font-family: "Playfair Display", serif;
+      font-weight: 400;
+    }
+
+    .nine h1 span {
+      margin-top: 5px;
+      font-size: 15px;
+      color: #444;
+      word-spacing: 1px;
+      font-weight: normal;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: "Raleway", sans-serif;
+      font-weight: 500;
+
+      display: grid;
+      grid-template-columns: 1fr max-content 1fr;
+      grid-template-rows: 27px 0;
+      grid-gap: 20px;
+      align-items: center;
+    }
+
+    .nine h1 span:after,
+    .nine h1 span:before {
+      content: " ";
+      display: block;
+      border-bottom: 1px solid #ccc;
+      border-top: 1px solid #ccc;
+      height: 5px;
+      background-color: #f8f8f8;
+    }
+
+    .table {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .table td {
+      border: 1px solid #e4eff8;
+    }
+
+    .table input {
+      width: 100%;
+    }
+    
+  </style>
+
+  <header>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-md-3 logo-div">
+          <a href="/"><img style="width: 65%" src="indexxUSD+.gif" /></a>
+        </div>
+        <div class="col-12 col-md-6 nav-main">
+          <ul>
+            <li>
+              <a href="index.html">Indexx 500 Test</a> <br />
+              <a href="indexx500_prod.html">Indexx 500 Production</a>
+            </li>
+            <li>
+              <a href="crypto_test.html">Indexx Crypto Test</a> <br />
+              <a href="crypto_prod.html">Indexx Crypto Production</a>
+            </li>
+            <li>
+              <a href="indexxusd+_test.html" class="active-link">Indexx USD+ Test</a>
+              <br />
+              <a href="indexxusd+_prod.html">Indexx USD+ Production</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <body>
+    <div class="nine">
+      <h1>Indexx USD+ Testing<span>Admin Dashboard</span></h1>
+      <button style="margin-left: 40%" onclick="load()">Connect Wallet</button
+      ><br />
+    </div>
+
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>1. Contract Address:</td>
+          <td>0x18d98BF82ee08938Ee41EC75ACb05C20c6029473</td>
+        </tr>
+
+        <tr>
+          <td>2. Transfer Fee Collection wallet / Admin Wallet :</td>
+          <td><span id="fee_wallet"> </span></td>
+        </tr>
+        <tr>
+          <td>3. Transfer Fee/Admin Wallet balance :</td>
+          <td><span id="fee_balance"> </span></td>
+        </tr>
+        <tr>
+          <td>4. Token Supply:</td>
+          <td><span id="supply"> </span></td>
+        </tr>
+        <tr>
+          <td>5. Current Wallet:</td>
+          <td><span id="current_wallet"> </span></td>
+        </tr>
+        <tr>
+          <td>6. Current Wallet Balance:</td>
+          <td><span id="current_wallet_balance"> </span></td>
+        </tr>
+        <tr>
+          <td>7. Mint Token:</td>
+          <td>
+            <input
+              style="width: auto"
+              type="text"
+              id="address1"
+              name="address1"
+              placeholder=" Wallet Address"
+            />
+            <input
+              style="width: auto"
+              type="number"
+              id="mint1"
+              name="mint1"
+              placeholder=" Amount to mint"
+            />
+            <button onclick="mint()">Mint</button>
+          </td>
+        </tr>
+        <tr>
+          <td>8. Transfer Token:</td>
+          <td>
+            <input
+              style="width: auto"
+              type="text"
+              id="address2"
+              name="address2"
+              placeholder=" To Wallet Address"
+            />
+            <input
+              style="width: auto"
+              type="number"
+              id="transfer2"
+              name="transfer2"
+              placeholder=" Amount to transfer"
+            />
+            <button onclick="transfer()">Transfer</button>
+          </td>
+        </tr>
+        <tr>
+          <td>9. Show Any Wallet Balance:</td>
+          <td>
+            <input
+              style="width: auto"
+              type="text"
+              id="address3"
+              name="address3"
+              placeholder=" Wallet Address"
+            />
+            <button id="get_balance" onclick="balance()">Get</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="nine">
+      <br /><br />
+      <h1>Pre-ICO and ICO Contract<span>Admin Dashboard</span></h1>
+      <button style="margin-left: 40%" onclick="load()">Connect Wallet</button>
+    </div>
+
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>10. Contract Address:</td>
+          <td>0x07725EfbC87E293EEeD1c2438c4b7f7A007fF850</td>
+        </tr>
+        <tr>
+          <td>11. ICO Admin:</td>
+          <td><span id="ico_admin"> </span></td>
+        </tr>
+        <tr>
+          <td>12. ICO Opening Time :</td>
+          <td><span id="open_time"> </span></td>
+        </tr>
+        <tr>
+          <td>13. ICO Closing Time :</td>
+          <td><span id="close_time"> </span></td>
+        </tr>
+        <tr>
+          <td>14. ICO Discount:</td>
+          <td><span id="discount"> </span></td>
+        </tr>
+        <tr>
+          <td>15. ICO Tokens Raised:</td>
+          <td><span id="weiraised"> </span></td>
+        </tr>
+        <tr>
+          <td>16. Minimum Investment:</td>
+          <td><span id="min_invest"> </span></td>
+        </tr>
+        <tr>
+          <td>17. Current Block Timestamp:</td>
+          <td><span id="current_time"> </span></td>
+        </tr>
+        <tr>
+          <td>18. Schedule Token Pre-ICO/ICO:</td>
+          <td>
+            Opening Time:<input
+              style="width: auto; margin-inline: 10%"
+              type="datetime-local"
+              id="open"
+              name="open"
+            /><br />
+            Closing Time:<input
+              style="width: auto; margin-inline: 10%"
+              type="datetime-local"
+              id="close"
+              name="close"
+            /><br />
+            <input
+              style="width: auto"
+              type="number"
+              id="dis"
+              name="dis"
+              placeholder=" Discount"
+            />
+            <button onclick="schedule()">Schedule</button>
+            <a target="_blank" href="https://www.epochconverter.com/"
+              >For Timestamp</a
+            >
+          </td>
+        </tr>
+        <tr>
+          <td>19. Change Discount:</td>
+          <td>
+            <input
+              style="width: auto"
+              type="number"
+              id="new_discount"
+              name="new_discount"
+              placeholder=" New Discount %"
+            />
+            <button onclick="change()">Set Discount</button><br />
+          </td>
+        </tr>
+        <tr>
+          <td>20. Get Contribution :</td>
+          <td>
+            <input
+              style="width: auto"
+              type="text"
+              id="contri"
+              name="contri"
+              placeholder=" Wallet Address"
+            />
+            <button id="get_contri" onclick="get_contri()">Submit</button>
+            <span id="contri_value"> </span><br />
+          </td>
+        </tr>
+        <tr>
+          <td>21. Change ICO Admin :</td>
+          <td>
+            <input
+              style="width: auto"
+              type="text"
+              id="ico_ad"
+              name="ico_ad"
+              placeholder=" New Admin Address"
+            />
+            <button id="set_ad" onclick="changeIcoAdmin()">Submit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="nine">
+      <br /><br />
+      <h1>TimeLock Contract<span>Admin Dashboard</span></h1>
+      <button style="margin-left: 40%" onclick="load()">Connect Wallet</button>
+    </div>
+
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>22. Contract Address:</td>
+          <td>0x82245b856CDE4Bed488D5B0227d27beCDcd81393</td>
+        </tr>
+
+        <tr>
+          <td>23. Get Vesting details :</td>
+          <td>
+            <input
+              style="width: auto"
+              type="text"
+              id="lock"
+              name="lock"
+              placeholder=" Wallet Address"
+            />
+            <button id="get_lock" onclick="get_lock()">Submit</button><br />
+            <span id="a"> </span><br />
+            <span id="b"> </span><br />
+            <span id="c"> </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script>
+    const tokenABI = [
+      {
+        inputs: [],
+        stateMutability: "nonpayable",
+        type: "constructor",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          {
+            indexed: true,
+            internalType: "address",
+            name: "owner",
+            type: "address",
+          },
+          {
+            indexed: true,
+            internalType: "address",
+            name: "spender",
+            type: "address",
+          },
+          {
+            indexed: false,
+            internalType: "uint256",
+            name: "value",
+            type: "uint256",
+          },
+        ],
+        name: "Approval",
+        type: "event",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          {
+            indexed: false,
+            internalType: "address",
+            name: "account",
+            type: "address",
+          },
+        ],
+        name: "Paused",
+        type: "event",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          {
+            indexed: true,
+            internalType: "bytes32",
+            name: "role",
+            type: "bytes32",
+          },
+          {
+            indexed: true,
+            internalType: "bytes32",
+            name: "previousAdminRole",
+            type: "bytes32",
+          },
+          {
+            indexed: true,
+            internalType: "bytes32",
+            name: "newAdminRole",
+            type: "bytes32",
+          },
+        ],
+        name: "RoleAdminChanged",
+        type: "event",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          {
+            indexed: true,
+            internalType: "bytes32",
+            name: "role",
+            type: "bytes32",
+          },
+          {
+            indexed: true,
+            internalType: "address",
+            name: "account",
+            type: "address",
+          },
+          {
+            indexed: true,
+            internalType: "address",
+            name: "sender",
+            type: "address",
+          },
+        ],
+        name: "RoleGranted",
+        type: "event",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          {
+            indexed: true,
+            internalType: "bytes32",
+            name: "role",
+            type: "bytes32",
+          },
+          {
+            indexed: true,
+            internalType: "address",
+            name: "account",
+            type: "address",
+          },
+          {
+            indexed: true,
+            internalType: "address",
+            name: "sender",
+            type: "address",
+          },
+        ],
+        name: "RoleRevoked",
+        type: "event",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          {
+            indexed: true,
+            internalType: "address",
+            name: "from",
+            type: "address",
+          },
+          {
+            indexed: true,
+            internalType: "address",
+            name: "to",
+            type: "address",
+          },
+          {
+            indexed: false,
+            internalType: "uint256",
+            name: "value",
+            type: "uint256",
+          },
+        ],
+        name: "Transfer",
+        type: "event",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          {
+            indexed: false,
+            internalType: "address",
+            name: "account",
+            type: "address",
+          },
+        ],
+        name: "Unpaused",
+        type: "event",
+      },
+      {
+        inputs: [],
+        name: "DEFAULT_ADMIN_ROLE",
+        outputs: [
+          {
+            internalType: "bytes32",
+            name: "",
+            type: "bytes32",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "MINTER_ROLE",
+        outputs: [
+          {
+            internalType: "bytes32",
+            name: "",
+            type: "bytes32",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "PAUSER_ROLE",
+        outputs: [
+          {
+            internalType: "bytes32",
+            name: "",
+            type: "bytes32",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "owner",
+            type: "address",
+          },
+          {
+            internalType: "address",
+            name: "spender",
+            type: "address",
+          },
+        ],
+        name: "allowance",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "spender",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "amount",
+            type: "uint256",
+          },
+        ],
+        name: "approve",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+        ],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "account",
+            type: "address",
+          },
+        ],
+        name: "balanceOf",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "uint256",
+            name: "amount",
+            type: "uint256",
+          },
+        ],
+        name: "burn",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "account",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "amount",
+            type: "uint256",
+          },
+        ],
+        name: "burnFrom",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_newFeeAdmin",
+            type: "address",
+          },
+        ],
+        name: "changeFeeAdmin",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "decimals",
+        outputs: [
+          {
+            internalType: "uint8",
+            name: "",
+            type: "uint8",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "spender",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "subtractedValue",
+            type: "uint256",
+          },
+        ],
+        name: "decreaseAllowance",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+        ],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "feeAdmin",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "bytes32",
+            name: "role",
+            type: "bytes32",
+          },
+        ],
+        name: "getRoleAdmin",
+        outputs: [
+          {
+            internalType: "bytes32",
+            name: "",
+            type: "bytes32",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "bytes32",
+            name: "role",
+            type: "bytes32",
+          },
+          {
+            internalType: "address",
+            name: "account",
+            type: "address",
+          },
+        ],
+        name: "grantRole",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "bytes32",
+            name: "role",
+            type: "bytes32",
+          },
+          {
+            internalType: "address",
+            name: "account",
+            type: "address",
+          },
+        ],
+        name: "hasRole",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "spender",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "addedValue",
+            type: "uint256",
+          },
+        ],
+        name: "increaseAllowance",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+        ],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "to",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "amount",
+            type: "uint256",
+          },
+        ],
+        name: "mint",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "name",
+        outputs: [
+          {
+            internalType: "string",
+            name: "",
+            type: "string",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "pause",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "paused",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "bytes32",
+            name: "role",
+            type: "bytes32",
+          },
+          {
+            internalType: "address",
+            name: "account",
+            type: "address",
+          },
+        ],
+        name: "renounceRole",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "bytes32",
+            name: "role",
+            type: "bytes32",
+          },
+          {
+            internalType: "address",
+            name: "account",
+            type: "address",
+          },
+        ],
+        name: "revokeRole",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "bytes4",
+            name: "interfaceId",
+            type: "bytes4",
+          },
+        ],
+        name: "supportsInterface",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "symbol",
+        outputs: [
+          {
+            internalType: "string",
+            name: "",
+            type: "string",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "totalSupply",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "to",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "amount",
+            type: "uint256",
+          },
+        ],
+        name: "transfer",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+        ],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "from",
+            type: "address",
+          },
+          {
+            internalType: "address",
+            name: "to",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "amount",
+            type: "uint256",
+          },
+        ],
+        name: "transferFrom",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+        ],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "unpause",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+    ];
+
+    const icoABI = [
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_reserveWallet",
+            type: "address",
+          },
+          {
+            internalType: "address",
+            name: "_token",
+            type: "address",
+          },
+          {
+            internalType: "address",
+            name: "_timelockContract",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "_openingTime",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "_closingTime",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "_investorMinCap",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "_discount",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "nonpayable",
+        type: "constructor",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          {
+            indexed: true,
+            internalType: "address",
+            name: "purchaser",
+            type: "address",
+          },
+          {
+            indexed: true,
+            internalType: "address",
+            name: "beneficiary",
+            type: "address",
+          },
+          {
+            indexed: false,
+            internalType: "uint256",
+            name: "value",
+            type: "uint256",
+          },
+          {
+            indexed: false,
+            internalType: "uint256",
+            name: "amount",
+            type: "uint256",
+          },
+        ],
+        name: "TokenPurchase",
+        type: "event",
+      },
+      {
+        stateMutability: "payable",
+        type: "fallback",
+      },
+      {
+        inputs: [],
+        name: "_setIndexxCryptoPrice",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        name: "acceptedTokens",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_beneficiary",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "_amount",
+            type: "uint256",
+          },
+          {
+            internalType: "address",
+            name: "tokenAddress",
+            type: "address",
+          },
+        ],
+        name: "buyIndexxFromAnyBEP20",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_beneficiary",
+            type: "address",
+          },
+        ],
+        name: "buyIndexxFromBNB",
+        outputs: [],
+        stateMutability: "payable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "uint256",
+            name: "_discount",
+            type: "uint256",
+          },
+        ],
+        name: "changeDiscount",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_newAdmin",
+            type: "address",
+          },
+        ],
+        name: "changeIcoAdmin",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "closingTime",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        name: "contributions",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "discount",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "hasClosed",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "icoAdmin",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "indexxCryptoPriceUSD",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "investorMinCap",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "openingTime",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "reserveWallet",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "uint256",
+            name: "_openingTime",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "_closingTime",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "_discount",
+            type: "uint256",
+          },
+        ],
+        name: "scheduleSale",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "timelockContract",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "token",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "weiRaised",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        stateMutability: "payable",
+        type: "receive",
+      },
+    ];
+
+    const lockABI = [
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_token",
+            type: "address",
+          },
+        ],
+        stateMutability: "nonpayable",
+        type: "constructor",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_beneficiary",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "_amount",
+            type: "uint256",
+          },
+        ],
+        name: "initiateTokenLock",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        name: "lockAmount",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        name: "lockAmountPerPhase",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "release",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        name: "releaseTime",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "token",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+    ];
+
+    const tokenAddress = "0x18d98BF82ee08938Ee41EC75ACb05C20c6029473";
+    const icoAddress = "0x07725EfbC87E293EEeD1c2438c4b7f7A007fF850";
+    const lockAddress = "0x82245b856CDE4Bed488D5B0227d27beCDcd81393";
+
+    async function schedule() {
+      try {
+        window.contract = await loadIcoContract();
+        var account = await getCurrentAccount();
+        var gas = await window.web3.eth.getGasPrice();
+        var open = $("#open").val();
+        var close = $("#close").val();
+
+        var closes = Date.parse(close);
+        closes = parseInt(closes / 1000);
+        var opens = Date.parse(open);
+        opens = parseInt(opens / 1000);
+        alert(opens);
+        var dis = $("#dis").val();
+        let coolNumber = await window.contract.methods
+          .scheduleSale(opens, closes, dis)
+          .send({ from: account, gasPrice: gas })
+          .on("transactionHash", function (hash) {
+            console.log(hash);
+            alert(
+              "Transaction successful, wait for few seconds for automatic reload"
+            );
+          })
+          .on("receipt", function (receipt) {
+            location.reload();
+          })
+          .on("error", function (error, receipt) {
+            console.log(error);
+          });
+        return;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    async function change() {
+      try {
+        window.contract = await loadIcoContract();
+        var account = await getCurrentAccount();
+        var gas = await window.web3.eth.getGasPrice();
+        var disc = $("#new_discount").val();
+        let coolNumber = await window.contract.methods
+          .changeDiscount(disc)
+          .send({ from: account, gasPrice: gas })
+          .on("transactionHash", function (hash) {
+            console.log(hash);
+            alert(
+              "Transaction successful, wait for few seconds for automatic reload"
+            );
+          })
+          .on("receipt", function (receipt) {
+            location.reload();
+          })
+          .on("error", function (error, receipt) {
+            console.log(error);
+          });
+        return;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    async function get_contri() {
+      try {
+        window.contract = await loadIcoContract();
+        const account = await getCurrentAccount();
+        var gas = await window.web3.eth.getGasPrice();
+        var to = $("#contri").val();
+        console.log('to',to);
+        let coolNumber = await window.contract.methods.contributions(to).call();
+        console.log( web3.utils.fromWei(
+          coolNumber,
+          "ether"
+        ));
+        document.getElementById("contri_value").textContent = web3.utils.fromWei(
+          coolNumber,
+          "ether"
+        );
+
+        return;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    async function changeIcoAdmin() {
+      try {
+        window.contract = await loadIcoContract();
+        var account = await getCurrentAccount();
+        var gas = await window.web3.eth.getGasPrice();
+        var ico_ad = $("#ico_ad").val();
+        let coolNumber = await window.contract.methods
+          .changeIcoAdmin(ico_ad)
+          .send({ from: account, gasPrice: gas })
+          .on("transactionHash", function (hash) {
+            console.log(hash);
+            alert(
+              "Transaction successful, wait for few seconds for automatic reload"
+            );
+          })
+          .on("receipt", function (receipt) {
+            location.reload();
+          })
+          .on("error", function (error, receipt) {
+            console.log(error);
+          });
+        return;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    async function loadWeb3() {
+      if (window.ethereum) {
+        window.web3 = new Web3(window.ethereum);
+        let n = ethereum.chainId;
+        console.log('i am here', n)
+        try {
+          if (n != "0x61") {
+            await window.ethereum.request({
+              method: "wallet_addEthereumChain",
+              params: [
+                {
+                  chainId: "0x61",
+                  chainName: "BSC Testnet",
+                  rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545"],
+                  blockExplorerUrls: [
+                    "https://explorer.binance.org/smart-testnet",
+                  ],
+                  nativeCurrency: {
+                    symbol: "BNB",
+                    decimals: 18,
+                  },
+                },
+              ],
+            });
+          }
+          const accounts = await ethereum
+            .request({ method: "eth_requestAccounts" })
+            .then((resp) => {
+              load_data();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        alert("Please Install Metamask to continue");
+      }
+    }
+
+    async function load_data() {
+      console.log("data loading");
+
+      window.contract = await loadTokenContract();
+      const admin = await window.contract.methods.feeAdmin().call();
+      document.getElementById("fee_wallet").textContent = admin;
+
+      window.contract = await loadTokenContract();
+      const balance = await window.contract.methods.balanceOf(admin).call();
+      document.getElementById("fee_balance").textContent = web3.utils.fromWei(
+        balance,
+        "ether"
+      );
+
+      window.contract = await loadTokenContract();
+      const supply = await window.contract.methods.totalSupply().call();
+      document.getElementById("supply").textContent = web3.utils.fromWei(
+        supply,
+        "ether"
+      );
+
+      var account2 = await getCurrentAccount();
+      document.getElementById("current_wallet").textContent = account2;
+
+      const balance2 = await window.contract.methods.balanceOf(account2).call();
+      document.getElementById("current_wallet_balance").textContent =
+        web3.utils.fromWei(balance2, "ether");
+
+      window.contract = await loadIcoContract();
+      const ico_admin = await window.contract.methods.icoAdmin().call();
+      document.getElementById("ico_admin").textContent = ico_admin;
+
+      const opentime = await window.contract.methods.openingTime().call();
+      var opentimes = new Date(parseInt(opentime) * 1000);
+      opentimes = opentimes.toLocaleString("en-US", {
+        timeZone: "America/Los_Angeles",
+      });
+      document.getElementById("open_time").textContent =
+        opentimes + " (" + opentime + ") ";
+
+      const closetime = await window.contract.methods.closingTime().call();
+      var closetimes = new Date(parseInt(closetime) * 1000);
+      closetimes = closetimes.toLocaleString("en-US", {
+        timeZone: "America/Los_Angeles",
+      });
+      document.getElementById("close_time").textContent =
+        closetimes + " (" + closetime + ") ";
+
+      const disc = await window.contract.methods.discount().call();
+      document.getElementById("discount").textContent = disc;
+
+      const weir = await window.contract.methods.weiRaised().call();
+      document.getElementById("weiraised").textContent = web3.utils.fromWei(
+        weir,
+        "ether"
+      );
+
+      const min_invest = await window.contract.methods.investorMinCap().call();
+      document.getElementById("min_invest").textContent = web3.utils.fromWei(
+        min_invest,
+        "ether"
+      );
+
+      const current = await await web3.eth.getBlock("latest");
+      var currents = new Date(parseInt(current.timestamp) * 1000);
+      currents = currents.toLocaleString("en-US", {
+        timeZone: "America/Los_Angeles",
+      });
+      document.getElementById("current_time").textContent =
+        currents + " (" + current.timestamp + ") ";
+    }
+
+    async function loadTokenContract() {
+      try {
+        return await new window.web3.eth.Contract(tokenABI, tokenAddress);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    async function loadIcoContract() {
+      try {
+        return await new window.web3.eth.Contract(icoABI, icoAddress);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    async function loadLockContract() {
+      try {
+        return await new window.web3.eth.Contract(lockABI, lockAddress);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    async function get_lock() {
+      try {
+        window.contract = await loadLockContract();
+        const account = await getCurrentAccount();
+        var gas = await window.web3.eth.getGasPrice();
+        var to = $("#lock").val();
+        console.log("to", to);
+        let answer1 = await window.contract.methods.releaseTime(to).call();
+        var answer11 = new Date(parseInt(answer1) * 1000);
+        document.getElementById("a").textContent =
+          " Next Release Date: [" + answer11 + "]";
+
+        let answer2 = await window.contract.methods.lockAmount(to).call();
+        document.getElementById("b").textContent =
+          "Installment Amount: [" + web3.utils.fromWei(answer2, "ether") + "]";
+
+        let answer3 = await window.contract.methods
+          .lockAmountPerPhase(to)
+          .call();
+        document.getElementById("c").textContent =
+          "Total Lock amount left: [" +
+          web3.utils.fromWei(answer3, "ether") +
+          "]";
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    async function getCurrentAccount() {
+      try {
+        const accounts = await window.web3.eth.getAccounts();
+        return accounts[0];
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    async function mint() {
+      try {
+        window.contract = await loadTokenContract();
+        const account = await getCurrentAccount();
+        var gas = await window.web3.eth.getGasPrice();
+        var to = $("#address1").val();
+        var value = $("#mint1").val();
+
+        let coolNumber = await window.contract.methods
+          .mint(to, web3.utils.toWei(value, "ether"))
+          .send({ from: account, gasPrice: gas })
+          .on("transactionHash", function (hash) {
+            console.log(hash);
+            alert("Mint successfully, wait for 5 seconds to reload");
+          })
+          .on("receipt", function (receipt) {
+            location.reload();
+          })
+          .on("error", function (error, receipt) {
+            console.log(error);
+          });
+        return;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    async function transfer() {
+      try {
+        window.contract = await loadTokenContract();
+        const account = await getCurrentAccount();
+        var gas = await window.web3.eth.getGasPrice();
+        var to = $("#address2").val();
+        var value = $("#transfer2").val();
+
+        let coolNumber = await window.contract.methods
+          .transfer(to, web3.utils.toWei(value, "ether"))
+          .send({ from: account, gasPrice: gas })
+          .on("transactionHash", function (hash) {
+            console.log(hash);
+            alert("Transferred successfully, wait for 5 seconds to reload");
+          })
+          .on("receipt", function (receipt) {
+            location.reload();
+          })
+          .on("error", function (error, receipt) {
+            console.log(error);
+          });
+        return;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    async function balance() {
+      try {
+        window.contract = await loadTokenContract();
+        const account = await getCurrentAccount();
+        var gas = await window.web3.eth.getGasPrice();
+        var to = $("#address3").val();
+
+        let coolNumber = await window.contract.methods.balanceOf(to).call();
+        document.getElementById("get_balance").textContent = web3.utils.fromWei(
+          coolNumber,
+          "ether"
+        );
+
+        return;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    async function load() {
+      try {
+        await loadWeb3();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    $(document).ready(function () {
+      load();
+    });
+  </script>
+
+  <!-- end of sixth section -->
+  <!-- jQuery library -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</html>
