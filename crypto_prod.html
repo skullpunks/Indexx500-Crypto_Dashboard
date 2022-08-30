@@ -148,6 +148,12 @@
 		<tbody>
 
 			<tr>
+				<td>Indexx Crypto Token Price:</td>
+				<td><span id="price"> </span>
+					<button onclick="set_real_price()"> Set Live Price </button></td>
+			</tr>
+
+			<tr>
 				<td>1. Contract Address:</td>
 				<td>0x4C3ED00AadCde2d5CA117f74642031CD7E087918</td>
 			</tr>
@@ -1535,6 +1541,28 @@
 		}
 	}
 
+	async function set_real_price() {
+		try {
+			window.contract = await loadIcoContract();
+			var account = await getCurrentAccount();
+			var gas = await window.web3.eth.getGasPrice();
+			let coolNumber = await window.contract.methods._setIndexxCryptoPrice().send({ from: account, gasPrice: gas })
+				.on('transactionHash', function (hash) {
+					console.log(hash);
+					alert("Transaction successful, wait for few seconds for automatic reload");
+				})
+				.on('receipt', function (receipt) {
+					location.reload();
+				})
+				.on('error', function (error, receipt) {
+					console.log(error);
+				});
+			return;
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
 	async function change() {
 		try {
 			window.contract = await loadIcoContract();
@@ -1660,6 +1688,9 @@
 		window.contract = await loadIcoContract();
 		const ico_admin = await window.contract.methods.icoAdmin().call();
 		document.getElementById("ico_admin").textContent = ico_admin;
+
+		const prices = await window.contract.methods.indexxCryptoPriceUSD().call();
+		document.getElementById("price").textContent = web3.utils.fromWei(prices, 'ether');;
 
 		const opentime = await window.contract.methods.openingTime().call();
 		var opentimes = new Date(parseInt(opentime) * 1000);
