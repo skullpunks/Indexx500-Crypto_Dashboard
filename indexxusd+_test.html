@@ -51,7 +51,7 @@
     }
 
     button:hover {
-      background-color: #51da63;
+      background-color: #090a0a;
       color: white;
     }
 
@@ -114,7 +114,6 @@
     .table input {
       width: 100%;
     }
-    
   </style>
 
   <header>
@@ -134,7 +133,9 @@
               <a href="crypto_prod.html">Indexx Crypto Production(IC)</a>
             </li>
             <li>
-              <a href="indexxusd+_test.html" class="active-link">Indexx USD+ Test</a>
+              <a href="indexxusd+_test.html" class="active-link"
+                >Indexx USD+ Test</a
+              >
               <br />
               <a href="indexxusd+_prod.html">Indexx USD+ Production(iUSD+)</a>
             </li>
@@ -1555,16 +1556,11 @@
         const account = await getCurrentAccount();
         var gas = await window.web3.eth.getGasPrice();
         var to = $("#contri").val();
-        console.log('to',to);
+        console.log("to", to);
         let coolNumber = await window.contract.methods.contributions(to).call();
-        console.log( web3.utils.fromWei(
-          coolNumber,
-          "ether"
-        ));
-        document.getElementById("contri_value").textContent = web3.utils.fromWei(
-          coolNumber,
-          "ether"
-        );
+        console.log(web3.utils.fromWei(coolNumber, "ether"));
+        document.getElementById("contri_value").textContent =
+          web3.utils.fromWei(coolNumber, "ether");
 
         return;
       } catch (err) {
@@ -1603,7 +1599,7 @@
       if (window.ethereum) {
         window.web3 = new Web3(window.ethereum);
         let n = ethereum.chainId;
-        console.log('i am here', n)
+        console.log("i am here", n);
         try {
           if (n != "0x61") {
             await window.ethereum.request({
