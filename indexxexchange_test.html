@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Indexx Crypto</title>
+    <title>Indexx Exchange</title>
     <!-- Latest compiled and minified CSS -->
     <link
       rel="stylesheet"
@@ -120,12 +120,12 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 col-md-3 logo-div">
-          <a href="/"><img style="width: 65%" src="indexxUSD+.gif" /></a>
+          <a href="/"><img style="width: 65%" src="indexx-exchange.png" /></a>
         </div>
         <div class="col-12 col-md-6 nav-main">
           <ul>
             <li>
-              <a href="index.html">Indexx 500 Test</a><br />
+              <a href="index.html">Indexx 500 Test</a> <br />
               <a href="indexx500_prod.html">Indexx 500 Production(IN500)</a>
             </li>
             <li>
@@ -133,13 +133,14 @@
               <a href="crypto_prod.html">Indexx Crypto Production(INXC)</a>
             </li>
             <li>
-              <a href="indexxusd+_test.html">Indexx USD+ Test</a> <br />
-              <a href="indexxusd+_prod.html" class="active-link"
-                >Indexx USD+ Production(iUSD+)</a
-              >
+              <a href="indexxusd+_test.html">Indexx USD+ Test</a>
+              <br />
+              <a href="indexxusd+_prod.html">Indexx USD+ Production(iUSD+)</a>
             </li>
             <li>
-              <a href="indexxexchange_test.html">Indexx Exchange Test</a>
+              <a href="indexxexchange_test.html" class="active-link"
+                >Indexx Exchange Test</a
+              >
               <br />
               <a href="indexxexchange_prod.html"
                 >Indexx Exchange Production(iNEX)</a
@@ -153,7 +154,7 @@
 
   <body>
     <div class="nine">
-      <h1>Indexx USD+ Production<span>Admin Dashboard</span></h1>
+      <h1>Indexx Exchange Testing<span>Admin Dashboard</span></h1>
       <button style="margin-left: 40%" onclick="load()">Connect Wallet</button
       ><br />
     </div>
@@ -162,7 +163,7 @@
       <tbody>
         <tr>
           <td>1. Contract Address:</td>
-          <td>0xa18f33e2C63C0A781f6836f9Ae8F5f6517Ce4e90</td>
+          <td>0x9Be6B3a0Aa74f0b012c47E05Be253F9608F8c6E7</td>
         </tr>
 
         <tr>
@@ -251,7 +252,7 @@
       <tbody>
         <tr>
           <td>10. Contract Address:</td>
-          <td>0x7e9948A7d80c5f8e5d78291b74e9DFeAc7f08955</td>
+          <td>0x6AA9c59FcAB862fD2fb59F7861a1051918FA7304</td>
         </tr>
         <tr>
           <td>11. ICO Admin:</td>
@@ -333,6 +334,7 @@
               placeholder=" Wallet Address"
             />
             <button id="get_contri" onclick="get_contri()">Submit</button>
+            <span id="contri_value"> </span><br />
           </td>
         </tr>
         <tr>
@@ -361,7 +363,7 @@
       <tbody>
         <tr>
           <td>22. Contract Address:</td>
-          <td>0x44D37703A37C617b6B824Eb45615aC5304740305</td>
+          <td>0x6d70437e526A6BF6eE88ADdAB857B3797babd8Ee</td>
         </tr>
 
         <tr>
@@ -1601,9 +1603,9 @@
       },
     ];
 
-    const tokenAddress = "0xa18f33e2C63C0A781f6836f9Ae8F5f6517Ce4e90";
-    const icoAddress = "0x7e9948A7d80c5f8e5d78291b74e9DFeAc7f08955";
-    const lockAddress = "0x44D37703A37C617b6B824Eb45615aC5304740305";
+    const tokenAddress = "0x9Be6B3a0Aa74f0b012c47E05Be253F9608F8c6E7";
+    const icoAddress = "0x6AA9c59FcAB862fD2fb59F7861a1051918FA7304";
+    const lockAddress = "0x6d70437e526A6BF6eE88ADdAB857B3797babd8Ee";
 
     async function schedule() {
       try {
@@ -1675,10 +1677,9 @@
         var to = $("#contri").val();
         console.log("to", to);
         let coolNumber = await window.contract.methods.contributions(to).call();
-        document.getElementById("get_contri").textContent = web3.utils.fromWei(
-          coolNumber,
-          "ether"
-        );
+        console.log(web3.utils.fromWei(coolNumber, "ether"));
+        document.getElementById("contri_value").textContent =
+          web3.utils.fromWei(coolNumber, "ether");
 
         return;
       } catch (err) {
@@ -1717,16 +1718,19 @@
       if (window.ethereum) {
         window.web3 = new Web3(window.ethereum);
         let n = ethereum.chainId;
+        console.log("i am here", n);
         try {
-          if (n != "0x38") {
+          if (n != "0x61") {
             await window.ethereum.request({
               method: "wallet_addEthereumChain",
               params: [
                 {
-                  chainId: "0x38",
-                  chainName: "BSC Mainnet",
-                  rpcUrls: ["https://bsc-dataseed1.binance.org/"],
-                  blockExplorerUrls: ["https://bscscan.com"],
+                  chainId: "0x61",
+                  chainName: "BSC Testnet",
+                  rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545"],
+                  blockExplorerUrls: [
+                    "https://explorer.binance.org/smart-testnet",
+                  ],
                   nativeCurrency: {
                     symbol: "BNB",
                     decimals: 18,
@@ -1853,7 +1857,7 @@
         const account = await getCurrentAccount();
         var gas = await window.web3.eth.getGasPrice();
         var to = $("#lock").val();
-
+        console.log("to", to);
         let answer1 = await window.contract.methods.releaseTime(to).call();
         var answer11 = new Date(parseInt(answer1) * 1000);
         document.getElementById("a").textContent =

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Indexx Crypto</title>
+    <title>Indexx Exchange</title>
     <!-- Latest compiled and minified CSS -->
     <link
       rel="stylesheet"
@@ -120,12 +120,12 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 col-md-3 logo-div">
-          <a href="/"><img style="width: 65%" src="indexxUSD+.gif" /></a>
+          <a href="/"><img style="width: 65%" src="indexx-exchange.png" /></a>
         </div>
         <div class="col-12 col-md-6 nav-main">
           <ul>
             <li>
-              <a href="index.html">Indexx 500 Test</a><br />
+              <a href="index.html">Indexx 500 Test</a> <br />
               <a href="indexx500_prod.html">Indexx 500 Production(IN500)</a>
             </li>
             <li>
@@ -133,15 +133,18 @@
               <a href="crypto_prod.html">Indexx Crypto Production(INXC)</a>
             </li>
             <li>
-              <a href="indexxusd+_test.html">Indexx USD+ Test</a> <br />
-              <a href="indexxusd+_prod.html" class="active-link"
-                >Indexx USD+ Production(iUSD+)</a
+              <a href="indexxusd+_test.html"
+                >Indexx USD+ Test</a
               >
+              <br />
+              <a href="indexxusd+_prod.html">Indexx USD+ Production(iUSD+)</a>
             </li>
             <li>
-              <a href="indexxexchange_test.html">Indexx Exchange Test</a>
+              <a href="indexxexchange_test.html" 
+                >Indexx Exchange Test</a
+              >
               <br />
-              <a href="indexxexchange_prod.html"
+              <a href="indexxexchange_prod.html" class="active-link"
                 >Indexx Exchange Production(iNEX)</a
               >
             </li>
@@ -153,7 +156,7 @@
 
   <body>
     <div class="nine">
-      <h1>Indexx USD+ Production<span>Admin Dashboard</span></h1>
+      <h1>Indexx USD+ Testing<span>Admin Dashboard</span></h1>
       <button style="margin-left: 40%" onclick="load()">Connect Wallet</button
       ><br />
     </div>
@@ -162,7 +165,7 @@
       <tbody>
         <tr>
           <td>1. Contract Address:</td>
-          <td>0xa18f33e2C63C0A781f6836f9Ae8F5f6517Ce4e90</td>
+          <td>0x18d98BF82ee08938Ee41EC75ACb05C20c6029473</td>
         </tr>
 
         <tr>
@@ -251,7 +254,7 @@
       <tbody>
         <tr>
           <td>10. Contract Address:</td>
-          <td>0x7e9948A7d80c5f8e5d78291b74e9DFeAc7f08955</td>
+          <td>0x07725EfbC87E293EEeD1c2438c4b7f7A007fF850</td>
         </tr>
         <tr>
           <td>11. ICO Admin:</td>
@@ -333,6 +336,7 @@
               placeholder=" Wallet Address"
             />
             <button id="get_contri" onclick="get_contri()">Submit</button>
+            <span id="contri_value"> </span><br />
           </td>
         </tr>
         <tr>
@@ -361,7 +365,7 @@
       <tbody>
         <tr>
           <td>22. Contract Address:</td>
-          <td>0x44D37703A37C617b6B824Eb45615aC5304740305</td>
+          <td>0x82245b856CDE4Bed488D5B0227d27beCDcd81393</td>
         </tr>
 
         <tr>
@@ -696,19 +700,6 @@
         type: "function",
       },
       {
-        inputs: [
-          {
-            internalType: "bool",
-            name: "status",
-            type: "bool",
-          },
-        ],
-        name: "changeFeeStatus",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
         inputs: [],
         name: "decimals",
         outputs: [
@@ -743,19 +734,6 @@
           },
         ],
         stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "feeActive",
-        outputs: [
-          {
-            internalType: "bool",
-            name: "",
-            type: "bool",
-          },
-        ],
-        stateMutability: "view",
         type: "function",
       },
       {
@@ -1052,7 +1030,43 @@
 
     const icoABI = [
       {
-        inputs: [],
+        inputs: [
+          {
+            internalType: "address",
+            name: "_reserveWallet",
+            type: "address",
+          },
+          {
+            internalType: "address",
+            name: "_token",
+            type: "address",
+          },
+          {
+            internalType: "address",
+            name: "_timelockContract",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "_openingTime",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "_closingTime",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "_investorMinCap",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "_discount",
+            type: "uint256",
+          },
+        ],
         stateMutability: "nonpayable",
         type: "constructor",
       },
@@ -1060,27 +1074,27 @@
         anonymous: false,
         inputs: [
           {
-            indexed: false,
+            indexed: true,
             internalType: "address",
             name: "purchaser",
             type: "address",
           },
           {
-            indexed: false,
+            indexed: true,
             internalType: "address",
-            name: "token",
+            name: "beneficiary",
             type: "address",
           },
           {
             indexed: false,
             internalType: "uint256",
-            name: "amount",
+            name: "value",
             type: "uint256",
           },
           {
             indexed: false,
             internalType: "uint256",
-            name: "value",
+            name: "amount",
             type: "uint256",
           },
         ],
@@ -1090,6 +1104,13 @@
       {
         stateMutability: "payable",
         type: "fallback",
+      },
+      {
+        inputs: [],
+        name: "_setIndexxCryptoPrice",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
       },
       {
         inputs: [
@@ -1358,13 +1379,6 @@
         type: "function",
       },
       {
-        inputs: [],
-        name: "withdraw",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
         stateMutability: "payable",
         type: "receive",
       },
@@ -1381,96 +1395,6 @@
         ],
         stateMutability: "nonpayable",
         type: "constructor",
-      },
-      {
-        anonymous: false,
-        inputs: [
-          {
-            indexed: false,
-            internalType: "address",
-            name: "user",
-            type: "address",
-          },
-          {
-            indexed: false,
-            internalType: "uint256",
-            name: "value",
-            type: "uint256",
-          },
-        ],
-        name: "InitiateLock",
-        type: "event",
-      },
-      {
-        anonymous: false,
-        inputs: [
-          {
-            indexed: false,
-            internalType: "address",
-            name: "user",
-            type: "address",
-          },
-          {
-            indexed: false,
-            internalType: "uint256",
-            name: "value",
-            type: "uint256",
-          },
-        ],
-        name: "ReleaseLock",
-        type: "event",
-      },
-      {
-        inputs: [],
-        name: "admin",
-        outputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "_admin",
-            type: "address",
-          },
-        ],
-        name: "changeAdmin",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "_lockers",
-            type: "address",
-          },
-        ],
-        name: "changeLockers",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address[]",
-            name: "_investor",
-            type: "address[]",
-          },
-        ],
-        name: "changeWithdrawalStatus",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
       },
       {
         inputs: [
@@ -1530,15 +1454,9 @@
       },
       {
         inputs: [],
-        name: "lockers",
-        outputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        stateMutability: "view",
+        name: "release",
+        outputs: [],
+        stateMutability: "nonpayable",
         type: "function",
       },
       {
@@ -1562,13 +1480,6 @@
       },
       {
         inputs: [],
-        name: "releaseTokens",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [],
         name: "token",
         outputs: [
           {
@@ -1580,30 +1491,11 @@
         stateMutability: "view",
         type: "function",
       },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        name: "withdrawalStatus",
-        outputs: [
-          {
-            internalType: "bool",
-            name: "",
-            type: "bool",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
     ];
 
-    const tokenAddress = "0xa18f33e2C63C0A781f6836f9Ae8F5f6517Ce4e90";
-    const icoAddress = "0x7e9948A7d80c5f8e5d78291b74e9DFeAc7f08955";
-    const lockAddress = "0x44D37703A37C617b6B824Eb45615aC5304740305";
+    const tokenAddress = "0x18d98BF82ee08938Ee41EC75ACb05C20c6029473";
+    const icoAddress = "0x07725EfbC87E293EEeD1c2438c4b7f7A007fF850";
+    const lockAddress = "0x82245b856CDE4Bed488D5B0227d27beCDcd81393";
 
     async function schedule() {
       try {
@@ -1675,10 +1567,9 @@
         var to = $("#contri").val();
         console.log("to", to);
         let coolNumber = await window.contract.methods.contributions(to).call();
-        document.getElementById("get_contri").textContent = web3.utils.fromWei(
-          coolNumber,
-          "ether"
-        );
+        console.log(web3.utils.fromWei(coolNumber, "ether"));
+        document.getElementById("contri_value").textContent =
+          web3.utils.fromWei(coolNumber, "ether");
 
         return;
       } catch (err) {
@@ -1717,16 +1608,19 @@
       if (window.ethereum) {
         window.web3 = new Web3(window.ethereum);
         let n = ethereum.chainId;
+        console.log("i am here", n);
         try {
-          if (n != "0x38") {
+          if (n != "0x61") {
             await window.ethereum.request({
               method: "wallet_addEthereumChain",
               params: [
                 {
-                  chainId: "0x38",
-                  chainName: "BSC Mainnet",
-                  rpcUrls: ["https://bsc-dataseed1.binance.org/"],
-                  blockExplorerUrls: ["https://bscscan.com"],
+                  chainId: "0x61",
+                  chainName: "BSC Testnet",
+                  rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545"],
+                  blockExplorerUrls: [
+                    "https://explorer.binance.org/smart-testnet",
+                  ],
                   nativeCurrency: {
                     symbol: "BNB",
                     decimals: 18,
@@ -1853,7 +1747,7 @@
         const account = await getCurrentAccount();
         var gas = await window.web3.eth.getGasPrice();
         var to = $("#lock").val();
-
+        console.log("to", to);
         let answer1 = await window.contract.methods.releaseTime(to).call();
         var answer11 = new Date(parseInt(answer1) * 1000);
         document.getElementById("a").textContent =
