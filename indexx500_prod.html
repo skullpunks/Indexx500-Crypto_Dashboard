@@ -296,7 +296,28 @@
 			</tr>
 
 			<tr>
-				<td>23. Get Vesting details : </td>
+				<td>23. Check Wallet Address Withdrawal Status:</td>
+				<td>
+				  <input style="width: auto" type="text" id="wallet_address" name="wallet_address"
+					placeholder=" Wallet Address" />
+				  <button id="check_with_status" onclick="check_withdraw_status()">Check Withdrawal Status</button><br />
+				  <span id="with_status"> </span><br />
+				</td>
+			  </tr>
+		
+		
+			  <tr>
+				<td>24. Change Wallet Address Withdrawal Status:</td>
+				<td>
+				  <input style="width: auto" type="text" id="wallet_addresses" name="wallet_addresses"
+					placeholder="Wallet Addresses" />
+				  <button id="change_wallet_address_status" onclick="change_withdraw_status()">Change Withdrawal Status</button><br />
+				  <span id="with_status"> </span><br />
+				</td>
+			  </tr>
+
+			<tr>
+				<td>25. Get Vesting details : </td>
 				<td><input style="width: auto;" type="text" id="lock" name="lock" placeholder=" Wallet Address">
 					<button id="get_lock" onclick="get_lock()"> Submit </button><br>
 					<span id="a"> </span><br>
@@ -1767,6 +1788,57 @@
 		}
 
 	}
+
+	async function check_withdraw_status() {
+    try {
+      window.contract = await loadLockContract();
+      const account = await getCurrentAccount();
+      var gas = await window.web3.eth.getGasPrice();
+      var address = $("#wallet_address").val();
+
+      let answer1 = await window.contract.methods.withdrawalStatus(address).call();
+
+      document.getElementById("with_status").textContent =
+        " Withdrawal Status: [" + answer1 + "]";
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function change_withdraw_status() {
+    try {
+      window.contract = await loadLockContract();
+      const account = await getCurrentAccount();
+      var gas = await window.web3.eth.getGasPrice();
+      var address = $("#wallet_addresses").val();
+      console.log(address)
+      var str_array = address.split(',');
+      var addresses = [];
+      addresses.push(address);
+      console.log(str_array);
+      let answer1 = await window.contract.methods.changeWithdrawalStatus(str_array)
+      .send({ from: account, gasPrice: gas })
+      .on("transactionHash", function (hash) {
+          console.log(hash);
+          alert(
+            "Transaction successful, wait for few seconds for automatic reload"
+          );
+        })
+        .on("receipt", function (receipt) {
+          location.reload();
+        })
+        .on("error", function (error, receipt) {
+          console.log(error);
+          alert("Please pass a single address or multiple address seperated by comma")
+        });
+      return;
+      console.log(answer1);
+    } catch (err) {
+      console.log(err);
+      alert("Please pass a single address or multiple address seperated by comma")
+    }
+  }
 
 	async function getCurrentAccount() {
 		try {
