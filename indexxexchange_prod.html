@@ -133,16 +133,12 @@
               <a href="crypto_prod.html">Indexx Crypto Production(INXC)</a>
             </li>
             <li>
-              <a href="indexxusd+_test.html"
-                >Indexx USD+ Test</a
-              >
+              <a href="indexxusd+_test.html">Indexx USD+ Test</a>
               <br />
               <a href="indexxusd+_prod.html">Indexx USD+ Production(iUSD+)</a>
             </li>
             <li>
-              <a href="indexxexchange_test.html" 
-                >Indexx Exchange Test</a
-              >
+              <a href="indexxexchange_test.html">Indexx Exchange Test</a>
               <br />
               <a href="indexxexchange_prod.html" class="active-link"
                 >Indexx Exchange Production(iNEX)</a
@@ -156,7 +152,7 @@
 
   <body>
     <div class="nine">
-      <h1>Indexx USD+ Testing<span>Admin Dashboard</span></h1>
+      <h1>Indexx Exchange Production<span>Admin Dashboard</span></h1>
       <button style="margin-left: 40%" onclick="load()">Connect Wallet</button
       ><br />
     </div>
@@ -394,7 +390,13 @@
   <script>
     const tokenABI = [
       {
-        inputs: [],
+        inputs: [
+          {
+            internalType: "uint256",
+            name: "_stakepercentage",
+            type: "uint256",
+          },
+        ],
         stateMutability: "nonpayable",
         type: "constructor",
       },
@@ -421,6 +423,25 @@
           },
         ],
         name: "Approval",
+        type: "event",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          {
+            indexed: true,
+            internalType: "address",
+            name: "previousOwner",
+            type: "address",
+          },
+          {
+            indexed: true,
+            internalType: "address",
+            name: "newOwner",
+            type: "address",
+          },
+        ],
+        name: "OwnershipTransferred",
         type: "event",
       },
       {
@@ -592,6 +613,19 @@
         inputs: [
           {
             internalType: "address",
+            name: "_stakeholder",
+            type: "address",
+          },
+        ],
+        name: "addStakeholder",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
             name: "owner",
             type: "address",
           },
@@ -690,11 +724,56 @@
         inputs: [
           {
             internalType: "address",
+            name: "_stakeholder",
+            type: "address",
+          },
+        ],
+        name: "calculateReward",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
             name: "_newFeeAdmin",
             type: "address",
           },
         ],
         name: "changeFeeAdmin",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "bool",
+            name: "status",
+            type: "bool",
+          },
+        ],
+        name: "changeFeeStatus",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "uint256",
+            name: "_stake",
+            type: "uint256",
+          },
+        ],
+        name: "createStake",
         outputs: [],
         stateMutability: "nonpayable",
         type: "function",
@@ -734,6 +813,26 @@
           },
         ],
         stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "distributeRewards",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "feeActive",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+        ],
+        stateMutability: "view",
         type: "function",
       },
       {
@@ -838,6 +937,30 @@
         inputs: [
           {
             internalType: "address",
+            name: "_address",
+            type: "address",
+          },
+        ],
+        name: "isStakeholder",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
             name: "to",
             type: "address",
           },
@@ -867,6 +990,19 @@
       },
       {
         inputs: [],
+        name: "owner",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
         name: "pause",
         outputs: [],
         stateMutability: "nonpayable",
@@ -883,6 +1019,39 @@
           },
         ],
         stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "uint256",
+            name: "_stake",
+            type: "uint256",
+          },
+        ],
+        name: "removeStake",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_stakeholder",
+            type: "address",
+          },
+        ],
+        name: "removeStakeholder",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "renounceOwnership",
+        outputs: [],
+        stateMutability: "nonpayable",
         type: "function",
       },
       {
@@ -924,6 +1093,57 @@
       {
         inputs: [
           {
+            internalType: "address",
+            name: "_stakeholder",
+            type: "address",
+          },
+        ],
+        name: "rewardOf",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_stakeholder",
+            type: "address",
+          },
+        ],
+        name: "stakeOf",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "stakePercentage",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
             internalType: "bytes4",
             name: "interfaceId",
             type: "bytes4",
@@ -948,6 +1168,32 @@
             internalType: "string",
             name: "",
             type: "string",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "totalRewards",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "totalStakes",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
           },
         ],
         stateMutability: "view",
@@ -1020,482 +1266,37 @@
         type: "function",
       },
       {
+        inputs: [
+          {
+            internalType: "address",
+            name: "newOwner",
+            type: "address",
+          },
+        ],
+        name: "transferOwnership",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
         inputs: [],
         name: "unpause",
         outputs: [],
         stateMutability: "nonpayable",
         type: "function",
       },
-    ];
-
-    const icoABI = [
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "_reserveWallet",
-            type: "address",
-          },
-          {
-            internalType: "address",
-            name: "_token",
-            type: "address",
-          },
-          {
-            internalType: "address",
-            name: "_timelockContract",
-            type: "address",
-          },
-          {
-            internalType: "uint256",
-            name: "_openingTime",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "_closingTime",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "_investorMinCap",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "_discount",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "nonpayable",
-        type: "constructor",
-      },
-      {
-        anonymous: false,
-        inputs: [
-          {
-            indexed: true,
-            internalType: "address",
-            name: "purchaser",
-            type: "address",
-          },
-          {
-            indexed: true,
-            internalType: "address",
-            name: "beneficiary",
-            type: "address",
-          },
-          {
-            indexed: false,
-            internalType: "uint256",
-            name: "value",
-            type: "uint256",
-          },
-          {
-            indexed: false,
-            internalType: "uint256",
-            name: "amount",
-            type: "uint256",
-          },
-        ],
-        name: "TokenPurchase",
-        type: "event",
-      },
-      {
-        stateMutability: "payable",
-        type: "fallback",
-      },
       {
         inputs: [],
-        name: "_setIndexxCryptoPrice",
+        name: "withdrawReward",
         outputs: [],
         stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        name: "acceptedTokens",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "_beneficiary",
-            type: "address",
-          },
-          {
-            internalType: "uint256",
-            name: "_amount",
-            type: "uint256",
-          },
-          {
-            internalType: "address",
-            name: "tokenAddress",
-            type: "address",
-          },
-        ],
-        name: "buyIndexxFromAnyBEP20",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "_beneficiary",
-            type: "address",
-          },
-        ],
-        name: "buyIndexxFromBNB",
-        outputs: [],
-        stateMutability: "payable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_discount",
-            type: "uint256",
-          },
-        ],
-        name: "changeDiscount",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "_newAdmin",
-            type: "address",
-          },
-        ],
-        name: "changeIcoAdmin",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "closingTime",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        name: "contributions",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "discount",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "hasClosed",
-        outputs: [
-          {
-            internalType: "bool",
-            name: "",
-            type: "bool",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "icoAdmin",
-        outputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "indexxCryptoPriceUSD",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "investorMinCap",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "openingTime",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "reserveWallet",
-        outputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "_openingTime",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "_closingTime",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "_discount",
-            type: "uint256",
-          },
-        ],
-        name: "scheduleSale",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "timelockContract",
-        outputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "token",
-        outputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "weiRaised",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        stateMutability: "payable",
-        type: "receive",
-      },
-    ];
-
-    const lockABI = [
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "_token",
-            type: "address",
-          },
-        ],
-        stateMutability: "nonpayable",
-        type: "constructor",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "_beneficiary",
-            type: "address",
-          },
-          {
-            internalType: "uint256",
-            name: "_amount",
-            type: "uint256",
-          },
-        ],
-        name: "initiateTokenLock",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        name: "lockAmount",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        name: "lockAmountPerPhase",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "release",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        name: "releaseTime",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [],
-        name: "token",
-        outputs: [
-          {
-            internalType: "address",
-            name: "",
-            type: "address",
-          },
-        ],
-        stateMutability: "view",
         type: "function",
       },
     ];
 
-    const tokenAddress = "0x18d98BF82ee08938Ee41EC75ACb05C20c6029473";
-    const icoAddress = "0x07725EfbC87E293EEeD1c2438c4b7f7A007fF850";
-    const lockAddress = "0x82245b856CDE4Bed488D5B0227d27beCDcd81393";
+    const tokenAddress = "0xD0D8c92c577E58AA2d77481F51557fd10AC76232";
+    // const icoAddress = "0x07725EfbC87E293EEeD1c2438c4b7f7A007fF850";
+    // const lockAddress = "0x82245b856CDE4Bed488D5B0227d27beCDcd81393";
 
     async function schedule() {
       try {
@@ -1610,17 +1411,15 @@
         let n = ethereum.chainId;
         console.log("i am here", n);
         try {
-          if (n != "0x61") {
+          if (n != "0x38") {
             await window.ethereum.request({
               method: "wallet_addEthereumChain",
               params: [
                 {
-                  chainId: "0x61",
-                  chainName: "BSC Testnet",
-                  rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545"],
-                  blockExplorerUrls: [
-                    "https://explorer.binance.org/smart-testnet",
-                  ],
+                  chainId: "0x38",
+                  chainName: "BSC Mainnet",
+                  rpcUrls: ["https://bsc-dataseed1.binance.org/"],
+                  blockExplorerUrls: ["https://bscscan.com"],
                   nativeCurrency: {
                     symbol: "BNB",
                     decimals: 18,
