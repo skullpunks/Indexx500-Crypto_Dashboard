@@ -125,48 +125,58 @@
         <div class="col-12 col-md-6 nav-main">
           <ul>
             <li>
+              <p>BSC</p>
               <a href="index.html">Indexx 500 Test</a> <br />
-              <a href="indexx500_prod.html">Indexx 500 Production(IN500)-BSC</a>
-			  <hr />
-              <a href="indexx500_prod_eth.html">Indexx 500 Production(IN500)-ETH</a>
+              <a href="indexx500_prod.html">Indexx 500 Production(IN500)</a>
+              <hr />
+              <p>ETH</p>
+              <a href="indexx500_prod_eth.html">Indexx 500 Production(IN500)</a>
             </li>
             <li>
+              <p>BSC</p>
               <a href="crypto_test.html">Indexx Crypto Test</a> <br />
-              <a href="crypto_prod.html"
-                >Indexx Crypto Production(INXC)-BSC</a
+              <a href="crypto_prod.html">Indexx Crypto Production(INXC)</a>
+              <hr />
+              <p>ETH</p>
+              <a href="crypto_prod_eth.html" class="active-link"
+                >Indexx Crypto Production(INXC)</a
               >
-			  <hr />
-			  <a href="crypto_prod_eth.html" class="active-link"
-			  >Indexx Crypto Production(INXC)-ETH</a
-			>
             </li>
             <li>
+              <p>BSC</p>
               <a href="indexxusd+_test.html">Indexx USD+ Test</a> <br />
-              <a href="indexxusd+_prod.html">Indexx USD+ Production(iUSD+)-BSC</a>
-			  <hr />
-              <a href="indexxusd+_prod_eth.html">Indexx USD+ Production(iUSD+)-ETH</a>
+              <a href="indexxusd+_prod.html">Indexx USD+ Production(iUSD+)</a>
+              <hr />
+              <p>ETH</p>
+              <a href="indexxusd+_prod_eth.html"
+                >Indexx USD+ Production(iUSD+)</a
+              >
             </li>
             <li>
+              <p>BSC</p>
               <a href="indexxexchange_test.html">Indexx Exchange Test</a>
               <br />
               <a href="indexxexchange_prod.html"
-                >Indexx Exchange Production(iNEX)-BSC</a
+                >Indexx Exchange Production(iNEX)</a
               >
-			  <hr />
-			  <a href="indexxexchange_prod_eth.html"
-			  >Indexx Exchange Production(iNEX)-ETH</a
-			>
+              <hr />
+              <p>ETH</p>
+              <a href="indexxexchange_prod_eth.html"
+                >Indexx Exchange Production(iNEX)</a
+              >
             </li>
             <li>
+              <p>BSC</p>
               <a href="indexxphoenix_test.html">Indexx Phoenix Test</a>
               <br />
               <a href="indexxphoenix_prod.html"
-                >Indexx Phoenix Production(INXP)-BSC</a
+                >Indexx Phoenix Production(INXP)</a
               >
-			  <hr />
-			  <a href="indexxphoenix_prod_eth.html"
-			  >Indexx Phoenix Production(INXP)-ETH</a
-			>
+              <hr />
+              <p>ETH</p>
+              <a href="indexxphoenix_prod_eth.html"
+                >Indexx Phoenix Production(INXP)</a
+              >
             </li>
           </ul>
         </div>
@@ -272,184 +282,6 @@
       </tbody>
     </table>
 
-    <div class="nine">
-      <br /><br />
-      <h1>Pre-ICO and ICO Contract<span>Admin Dashboard</span></h1>
-      <button style="margin-left: 40%" onclick="load()">Connect Wallet</button>
-    </div>
-
-    <table class="table">
-      <tbody>
-        <tr>
-          <td>10. Contract Address:</td>
-          <td>0xD0c7102e360CcFc6aFD583D37bA94fb1A16aa7F9</td>
-        </tr>
-        <tr>
-          <td>11. ICO Admin:</td>
-          <td><span id="ico_admin"> </span></td>
-        </tr>
-        <tr>
-          <td>12. ICO Opening Time :</td>
-          <td><span id="open_time"> </span></td>
-        </tr>
-        <tr>
-          <td>13. ICO Closing Time :</td>
-          <td><span id="close_time"> </span></td>
-        </tr>
-        <tr>
-          <td>14. ICO Discount:</td>
-          <td><span id="discount"> </span></td>
-        </tr>
-        <tr>
-          <td>15. ICO Tokens Raised:</td>
-          <td><span id="weiraised"> </span></td>
-        </tr>
-        <tr>
-          <td>16. Minimum Investment:</td>
-          <td><span id="min_invest"> </span></td>
-        </tr>
-        <tr>
-          <td>17. Current Block Timestamp:</td>
-          <td><span id="current_time"> </span></td>
-        </tr>
-        <tr>
-          <td>18. Schedule Token Pre-ICO/ICO:</td>
-          <td>
-            Opening Time:<input
-              style="width: auto; margin-inline: 10%"
-              type="datetime-local"
-              id="open"
-              name="open"
-            /><br />
-            Closing Time:<input
-              style="width: auto; margin-inline: 10%"
-              type="datetime-local"
-              id="close"
-              name="close"
-            /><br />
-            <input
-              style="width: auto"
-              type="number"
-              id="dis"
-              name="dis"
-              placeholder=" Discount"
-            />
-            <button onclick="schedule()">Schedule</button>
-            <a target="_blank" href="https://www.epochconverter.com/"
-              >For Timestamp</a
-            >
-          </td>
-        </tr>
-        <tr>
-          <td>19. Change Discount:</td>
-          <td>
-            <input
-              style="width: auto"
-              type="number"
-              id="new_discount"
-              name="new_discount"
-              placeholder=" New Discount %"
-            />
-            <button onclick="change()">Set Discount</button><br />
-          </td>
-        </tr>
-        <tr>
-          <td>20. Get Contribution :</td>
-          <td>
-            <input
-              style="width: auto"
-              type="text"
-              id="contri"
-              name="contri"
-              placeholder=" Wallet Address"
-            />
-            <button id="get_contri" onclick="get_contri()">Submit</button>
-          </td>
-        </tr>
-        <tr>
-          <td>21. Change ICO Admin :</td>
-          <td>
-            <input
-              style="width: auto"
-              type="text"
-              id="ico_ad"
-              name="ico_ad"
-              placeholder=" New Admin Address"
-            />
-            <button id="set_ad" onclick="changeIcoAdmin()">Submit</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="nine">
-      <br /><br />
-      <h1>TimeLock Contract<span>Admin Dashboard</span></h1>
-      <button style="margin-left: 40%" onclick="load()">Connect Wallet</button>
-    </div>
-
-    <table class="table">
-      <tbody>
-        <tr>
-          <td>22. Contract Address:</td>
-          <td>0x946c1563F2819E43Ebc50252cFF2B3fF0aB60413</td>
-        </tr>
-
-        <tr>
-          <td>23. Check Wallet Address Withdrawal Status:</td>
-          <td>
-            <input
-              style="width: auto"
-              type="text"
-              id="wallet_address"
-              name="wallet_address"
-              placeholder=" Wallet Address"
-            />
-            <button id="check_with_status" onclick="check_withdraw_status()">
-              Check Withdrawal Status</button
-            ><br />
-            <span id="with_status"> </span><br />
-          </td>
-        </tr>
-
-        <tr>
-          <td>24. Change Wallet Address Withdrawal Status:</td>
-          <td>
-            <input
-              style="width: auto"
-              type="text"
-              id="wallet_addresses"
-              name="wallet_addresses"
-              placeholder="Wallet Addresses"
-            />
-            <button
-              id="change_wallet_address_status"
-              onclick="change_withdraw_status()"
-            >
-              Change Withdrawal Status</button
-            ><br />
-            <span id="with_status"> </span><br />
-          </td>
-        </tr>
-
-        <tr>
-          <td>25. Get Vesting details :</td>
-          <td>
-            <input
-              style="width: auto"
-              type="text"
-              id="lock"
-              name="lock"
-              placeholder=" Wallet Address"
-            />
-            <button id="get_lock" onclick="get_lock()">Submit</button><br />
-            <span id="a"> </span><br />
-            <span id="b"> </span><br />
-            <span id="c"> </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </body>
 
   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
