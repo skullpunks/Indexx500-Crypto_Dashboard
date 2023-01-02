@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Indexx Phoenix</title>
+    <title>Indexx Exchange</title>
     <!-- Latest compiled and minified CSS -->
     <link
       rel="stylesheet"
@@ -120,7 +120,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 col-md-3 logo-div">
-          <a href="/"><img style="width: 65%" src="INXP.png" /></a>
+          <a href="/"><img style="width: 65%" src="indexx-exchange.png" /></a>
         </div>
         <div class="col-12 col-md-6 nav-main">
           <ul>
@@ -140,7 +140,7 @@
               <a href="indexxusd+_test.html">Indexx USD+ Test</a>
               <br />
               <a href="indexxusd+_prod.html">Indexx USD+ Production(iUSD+)-BSC</a>
-              <hr/>
+              <hr />
               <a href="indexxusd+_prod_eth.html">Indexx USD+ Production(iUSD+)-ETH</a>
             </li>
             <li>
@@ -150,13 +150,12 @@
                 >Indexx Exchange Production(iNEX)-BSC</a
               >
               <hr />
-              <a href="indexxexchange_prod_eth.html"
+              <a href="indexxexchange_prod_eth.html" class="active-link"
                 >Indexx Exchange Production(iNEX)-ETH</a
               >
             </li>
             <li>
-              <a href="indexxphoenix_test.html" class="active-link"
-                >Indexx Phoenix Test</a
+              <a href="indexxphoenix_test.html" >Indexx Phoenix Test</a
               >
               <br />
               <a href="indexxphoenix_prod.html"
@@ -164,9 +163,9 @@
               >
               <hr />
               <a href="indexxphoenix_prod_eth.html"
-              >Indexx Phoenix Production(INXP)-ETH</a
-            >
-            </li>
+                >Indexx Phoenix Production(INXP)-ETH</a
+              >
+              </li>
           </ul>
         </div>
       </div>
@@ -175,7 +174,7 @@
 
   <body>
     <div class="nine">
-      <h1>Indexx Phoenix Testing<span>Admin Dashboard</span></h1>
+      <h1>Indexx Exchange Production<span>Admin Dashboard</span></h1>
       <button style="margin-left: 40%" onclick="load()">Connect Wallet</button
       ><br />
     </div>
@@ -184,7 +183,7 @@
       <tbody>
         <tr>
           <td>1. Contract Address:</td>
-          <td>0x39875930564e5173C8373DEb6508788cCE7C8f4C</td>
+          <td>0x02082bE81e0b8BE7D7bdAa75A2706B20EdCD9BF9</td>
         </tr>
 
         <tr>
@@ -273,7 +272,7 @@
       <tbody>
         <tr>
           <td>10. Contract Address:</td>
-          <td>0x6AA9c59FcAB862fD2fb59F7861a1051918FA7304</td>
+          <td>0x07725EfbC87E293EEeD1c2438c4b7f7A007fF850</td>
         </tr>
         <tr>
           <td>11. ICO Admin:</td>
@@ -384,7 +383,7 @@
       <tbody>
         <tr>
           <td>22. Contract Address:</td>
-          <td>0x6d70437e526A6BF6eE88ADdAB857B3797babd8Ee</td>
+          <td>0x82245b856CDE4Bed488D5B0227d27beCDcd81393</td>
         </tr>
 
         <tr>
@@ -413,7 +412,13 @@
   <script>
     const tokenABI = [
       {
-        inputs: [],
+        inputs: [
+          {
+            internalType: "uint256",
+            name: "_stakepercentage",
+            type: "uint256",
+          },
+        ],
         stateMutability: "nonpayable",
         type: "constructor",
       },
@@ -440,6 +445,25 @@
           },
         ],
         name: "Approval",
+        type: "event",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          {
+            indexed: true,
+            internalType: "address",
+            name: "previousOwner",
+            type: "address",
+          },
+          {
+            indexed: true,
+            internalType: "address",
+            name: "newOwner",
+            type: "address",
+          },
+        ],
+        name: "OwnershipTransferred",
         type: "event",
       },
       {
@@ -611,6 +635,19 @@
         inputs: [
           {
             internalType: "address",
+            name: "_stakeholder",
+            type: "address",
+          },
+        ],
+        name: "addStakeholder",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
             name: "owner",
             type: "address",
           },
@@ -709,6 +746,25 @@
         inputs: [
           {
             internalType: "address",
+            name: "_stakeholder",
+            type: "address",
+          },
+        ],
+        name: "calculateReward",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
             name: "_newFeeAdmin",
             type: "address",
           },
@@ -727,6 +783,19 @@
           },
         ],
         name: "changeFeeStatus",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "uint256",
+            name: "_stake",
+            type: "uint256",
+          },
+        ],
+        name: "createStake",
         outputs: [],
         stateMutability: "nonpayable",
         type: "function",
@@ -765,6 +834,13 @@
             type: "bool",
           },
         ],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "distributeRewards",
+        outputs: [],
         stateMutability: "nonpayable",
         type: "function",
       },
@@ -883,6 +959,30 @@
         inputs: [
           {
             internalType: "address",
+            name: "_address",
+            type: "address",
+          },
+        ],
+        name: "isStakeholder",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
             name: "to",
             type: "address",
           },
@@ -912,6 +1012,19 @@
       },
       {
         inputs: [],
+        name: "owner",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
         name: "pause",
         outputs: [],
         stateMutability: "nonpayable",
@@ -928,6 +1041,39 @@
           },
         ],
         stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "uint256",
+            name: "_stake",
+            type: "uint256",
+          },
+        ],
+        name: "removeStake",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_stakeholder",
+            type: "address",
+          },
+        ],
+        name: "removeStakeholder",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "renounceOwnership",
+        outputs: [],
+        stateMutability: "nonpayable",
         type: "function",
       },
       {
@@ -969,6 +1115,57 @@
       {
         inputs: [
           {
+            internalType: "address",
+            name: "_stakeholder",
+            type: "address",
+          },
+        ],
+        name: "rewardOf",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_stakeholder",
+            type: "address",
+          },
+        ],
+        name: "stakeOf",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "stakePercentage",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
             internalType: "bytes4",
             name: "interfaceId",
             type: "bytes4",
@@ -993,6 +1190,32 @@
             internalType: "string",
             name: "",
             type: "string",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "totalRewards",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "totalStakes",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
           },
         ],
         stateMutability: "view",
@@ -1065,17 +1288,37 @@
         type: "function",
       },
       {
+        inputs: [
+          {
+            internalType: "address",
+            name: "newOwner",
+            type: "address",
+          },
+        ],
+        name: "transferOwnership",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
         inputs: [],
         name: "unpause",
         outputs: [],
         stateMutability: "nonpayable",
         type: "function",
       },
+      {
+        inputs: [],
+        name: "withdrawReward",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
     ];
 
-    const tokenAddress = "0x39875930564e5173C8373DEb6508788cCE7C8f4C";
-    // const icoAddress = "0x6AA9c59FcAB862fD2fb59F7861a1051918FA7304";
-    // const lockAddress = "0x6d70437e526A6BF6eE88ADdAB857B3797babd8Ee";
+    const tokenAddress = "0x02082bE81e0b8BE7D7bdAa75A2706B20EdCD9BF9";
+    // const icoAddress = "0x07725EfbC87E293EEeD1c2438c4b7f7A007fF850";
+    // const lockAddress = "0x82245b856CDE4Bed488D5B0227d27beCDcd81393";
 
     async function schedule() {
       try {
@@ -1190,23 +1433,10 @@
         let n = ethereum.chainId;
         console.log("i am here", n);
         try {
-          if (n != "0x61") {
+          if (n != "0x1") {
             await window.ethereum.request({
-              method: "wallet_addEthereumChain",
-              params: [
-                {
-                  chainId: "0x61",
-                  chainName: "BSC Testnet",
-                  rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545"],
-                  blockExplorerUrls: [
-                    "https://explorer.binance.org/smart-testnet",
-                  ],
-                  nativeCurrency: {
-                    symbol: "BNB",
-                    decimals: 18,
-                  },
-                },
-              ],
+              method: "wallet_switchEthereumChain",
+              params: [{ chainId: "0x1" }],
             });
           }
           const accounts = await ethereum

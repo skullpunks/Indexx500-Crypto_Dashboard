@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Indexx Phoenix</title>
+    <title>Indexx Crypto</title>
     <!-- Latest compiled and minified CSS -->
     <link
       rel="stylesheet"
@@ -120,34 +120,39 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 col-md-3 logo-div">
-          <a href="/"><img style="width: 65%" src="INXP.png" /></a>
+          <a href="/"><img style="width: 65%" src="indexxUSD+.gif" /></a>
         </div>
         <div class="col-12 col-md-6 nav-main">
           <ul>
             <li>
-              <a href="index.html">Indexx 500 Test</a> <br />
+              <a href="index.html">Indexx 500 Test</a><br />
               <a href="indexx500_prod.html">Indexx 500 Production(IN500)-BSC</a>
               <hr />
-              <a href="indexx500_prod_eth.html">Indexx 500 Production(IN500)-ETH</a>
+              <a href="indexx500_prod_eth.html"
+                >Indexx 500 Production(IN500)-ETH</a
+              >
             </li>
             <li>
               <a href="crypto_test.html">Indexx Crypto Test</a> <br />
               <a href="crypto_prod.html">Indexx Crypto Production(INXC)-BSC</a>
               <hr />
-              <a href="crypto_prod_eth.html">Indexx Crypto Production(INXC)-ETH</a>
+              <a href="crypto_prod_eth.html"
+                >Indexx Crypto Production(INXC)-ETH</a
+              >
             </li>
             <li>
-              <a href="indexxusd+_test.html">Indexx USD+ Test</a>
-              <br />
+              <a href="indexxusd+_test.html">Indexx USD+ Test</a> <br />
               <a href="indexxusd+_prod.html">Indexx USD+ Production(iUSD+)-BSC</a>
-              <hr/>
-              <a href="indexxusd+_prod_eth.html">Indexx USD+ Production(iUSD+)-ETH</a>
+              <hr />
+              <a href="indexxusd+_prod_eth.html" class="active-link"
+                >Indexx USD+ Production(iUSD+)-ETH</a
+              >
             </li>
             <li>
               <a href="indexxexchange_test.html">Indexx Exchange Test</a>
               <br />
               <a href="indexxexchange_prod.html"
-                >Indexx Exchange Production(iNEX)-BSC</a
+                >Indexx Exchange Production(iNEX)</a
               >
               <hr />
               <a href="indexxexchange_prod_eth.html"
@@ -155,17 +160,15 @@
               >
             </li>
             <li>
-              <a href="indexxphoenix_test.html" class="active-link"
-                >Indexx Phoenix Test</a
-              >
+              <a href="indexxphoenix_test.html">Indexx Phoenix Test</a>
               <br />
               <a href="indexxphoenix_prod.html"
                 >Indexx Phoenix Production(INXP)-BSC</a
               >
               <hr />
-              <a href="indexxphoenix_prod_eth.html"
-              >Indexx Phoenix Production(INXP)-ETH</a
-            >
+              <a href="indexxphoenix_prod_eth.html">
+                Indexx Phoenix Production(INXP)- ETH
+              </a>
             </li>
           </ul>
         </div>
@@ -175,7 +178,7 @@
 
   <body>
     <div class="nine">
-      <h1>Indexx Phoenix Testing<span>Admin Dashboard</span></h1>
+      <h1>Indexx USD+ Production<span>Admin Dashboard</span></h1>
       <button style="margin-left: 40%" onclick="load()">Connect Wallet</button
       ><br />
     </div>
@@ -184,7 +187,7 @@
       <tbody>
         <tr>
           <td>1. Contract Address:</td>
-          <td>0x39875930564e5173C8373DEb6508788cCE7C8f4C</td>
+          <td>0x8bA9A63cac81B09509360d0A027dCE14F90F6779</td>
         </tr>
 
         <tr>
@@ -263,7 +266,7 @@
       </tbody>
     </table>
 
-    <!-- <div class="nine">
+    <div class="nine">
       <br /><br />
       <h1>Pre-ICO and ICO Contract<span>Admin Dashboard</span></h1>
       <button style="margin-left: 40%" onclick="load()">Connect Wallet</button>
@@ -273,7 +276,7 @@
       <tbody>
         <tr>
           <td>10. Contract Address:</td>
-          <td>0x6AA9c59FcAB862fD2fb59F7861a1051918FA7304</td>
+          <td>0x7e9948A7d80c5f8e5d78291b74e9DFeAc7f08955</td>
         </tr>
         <tr>
           <td>11. ICO Admin:</td>
@@ -355,7 +358,6 @@
               placeholder=" Wallet Address"
             />
             <button id="get_contri" onclick="get_contri()">Submit</button>
-            <span id="contri_value"> </span><br />
           </td>
         </tr>
         <tr>
@@ -384,11 +386,48 @@
       <tbody>
         <tr>
           <td>22. Contract Address:</td>
-          <td>0x6d70437e526A6BF6eE88ADdAB857B3797babd8Ee</td>
+          <td>0x44D37703A37C617b6B824Eb45615aC5304740305</td>
         </tr>
 
         <tr>
-          <td>23. Get Vesting details :</td>
+          <td>23. Check Wallet Address Withdrawal Status:</td>
+          <td>
+            <input
+              style="width: auto"
+              type="text"
+              id="wallet_address"
+              name="wallet_address"
+              placeholder=" Wallet Address"
+            />
+            <button id="check_with_status" onclick="check_withdraw_status()">
+              Check Withdrawal Status</button
+            ><br />
+            <span id="with_status"> </span><br />
+          </td>
+        </tr>
+
+        <tr>
+          <td>24. Change Wallet Address Withdrawal Status:</td>
+          <td>
+            <input
+              style="width: auto"
+              type="text"
+              id="wallet_addresses"
+              name="wallet_addresses"
+              placeholder="Wallet Addresses"
+            />
+            <button
+              id="change_wallet_address_status"
+              onclick="change_withdraw_status()"
+            >
+              Change Withdrawal Status</button
+            ><br />
+            <span id="with_status"> </span><br />
+          </td>
+        </tr>
+
+        <tr>
+          <td>25. Get Vesting details :</td>
           <td>
             <input
               style="width: auto"
@@ -404,7 +443,7 @@
           </td>
         </tr>
       </tbody>
-    </table> -->
+    </table>
   </body>
 
   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
@@ -1073,9 +1112,560 @@
       },
     ];
 
-    const tokenAddress = "0x39875930564e5173C8373DEb6508788cCE7C8f4C";
-    // const icoAddress = "0x6AA9c59FcAB862fD2fb59F7861a1051918FA7304";
-    // const lockAddress = "0x6d70437e526A6BF6eE88ADdAB857B3797babd8Ee";
+    const icoABI = [
+      {
+        inputs: [],
+        stateMutability: "nonpayable",
+        type: "constructor",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          {
+            indexed: false,
+            internalType: "address",
+            name: "purchaser",
+            type: "address",
+          },
+          {
+            indexed: false,
+            internalType: "address",
+            name: "token",
+            type: "address",
+          },
+          {
+            indexed: false,
+            internalType: "uint256",
+            name: "amount",
+            type: "uint256",
+          },
+          {
+            indexed: false,
+            internalType: "uint256",
+            name: "value",
+            type: "uint256",
+          },
+        ],
+        name: "TokenPurchase",
+        type: "event",
+      },
+      {
+        stateMutability: "payable",
+        type: "fallback",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        name: "acceptedTokens",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_beneficiary",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "_amount",
+            type: "uint256",
+          },
+          {
+            internalType: "address",
+            name: "tokenAddress",
+            type: "address",
+          },
+        ],
+        name: "buyIndexxFromAnyBEP20",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_beneficiary",
+            type: "address",
+          },
+        ],
+        name: "buyIndexxFromBNB",
+        outputs: [],
+        stateMutability: "payable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "uint256",
+            name: "_discount",
+            type: "uint256",
+          },
+        ],
+        name: "changeDiscount",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_newAdmin",
+            type: "address",
+          },
+        ],
+        name: "changeIcoAdmin",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "closingTime",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        name: "contributions",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "discount",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "hasClosed",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "icoAdmin",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "indexxCryptoPriceUSD",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "investorMinCap",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "openingTime",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "reserveWallet",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "uint256",
+            name: "_openingTime",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "_closingTime",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "_discount",
+            type: "uint256",
+          },
+        ],
+        name: "scheduleSale",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "timelockContract",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "token",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "weiRaised",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "withdraw",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        stateMutability: "payable",
+        type: "receive",
+      },
+    ];
+
+    const lockABI = [
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_token",
+            type: "address",
+          },
+        ],
+        stateMutability: "nonpayable",
+        type: "constructor",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          {
+            indexed: false,
+            internalType: "address",
+            name: "user",
+            type: "address",
+          },
+          {
+            indexed: false,
+            internalType: "uint256",
+            name: "value",
+            type: "uint256",
+          },
+        ],
+        name: "InitiateLock",
+        type: "event",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          {
+            indexed: false,
+            internalType: "address",
+            name: "user",
+            type: "address",
+          },
+          {
+            indexed: false,
+            internalType: "uint256",
+            name: "value",
+            type: "uint256",
+          },
+        ],
+        name: "ReleaseLock",
+        type: "event",
+      },
+      {
+        inputs: [],
+        name: "admin",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_admin",
+            type: "address",
+          },
+        ],
+        name: "changeAdmin",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_lockers",
+            type: "address",
+          },
+        ],
+        name: "changeLockers",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address[]",
+            name: "_investor",
+            type: "address[]",
+          },
+        ],
+        name: "changeWithdrawalStatus",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_beneficiary",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "_amount",
+            type: "uint256",
+          },
+        ],
+        name: "initiateTokenLock",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        name: "lockAmount",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        name: "lockAmountPerPhase",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "lockers",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        name: "releaseTime",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "releaseTokens",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "token",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        name: "withdrawalStatus",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+    ];
+
+    const tokenAddress = "0x8bA9A63cac81B09509360d0A027dCE14F90F6779";
+    const icoAddress = "0x7e9948A7d80c5f8e5d78291b74e9DFeAc7f08955";
+    const lockAddress = "0x44D37703A37C617b6B824Eb45615aC5304740305";
 
     async function schedule() {
       try {
@@ -1147,9 +1737,10 @@
         var to = $("#contri").val();
         console.log("to", to);
         let coolNumber = await window.contract.methods.contributions(to).call();
-        console.log(web3.utils.fromWei(coolNumber, "ether"));
-        document.getElementById("contri_value").textContent =
-          web3.utils.fromWei(coolNumber, "ether");
+        document.getElementById("get_contri").textContent = web3.utils.fromWei(
+          coolNumber,
+          "ether"
+        );
 
         return;
       } catch (err) {
@@ -1188,25 +1779,11 @@
       if (window.ethereum) {
         window.web3 = new Web3(window.ethereum);
         let n = ethereum.chainId;
-        console.log("i am here", n);
         try {
-          if (n != "0x61") {
+          if (n != "0x1") {
             await window.ethereum.request({
-              method: "wallet_addEthereumChain",
-              params: [
-                {
-                  chainId: "0x61",
-                  chainName: "BSC Testnet",
-                  rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545"],
-                  blockExplorerUrls: [
-                    "https://explorer.binance.org/smart-testnet",
-                  ],
-                  nativeCurrency: {
-                    symbol: "BNB",
-                    decimals: 18,
-                  },
-                },
-              ],
+              method: "wallet_switchEthereumChain",
+              params: [{ chainId: "0x1" }],
             });
           }
           const accounts = await ethereum
@@ -1327,7 +1904,7 @@
         const account = await getCurrentAccount();
         var gas = await window.web3.eth.getGasPrice();
         var to = $("#lock").val();
-        console.log("to", to);
+
         let answer1 = await window.contract.methods.releaseTime(to).call();
         var answer11 = new Date(parseInt(answer1) * 1000);
         document.getElementById("a").textContent =
@@ -1346,6 +1923,63 @@
           "]";
       } catch (err) {
         console.log(err);
+      }
+    }
+
+    async function check_withdraw_status() {
+      try {
+        window.contract = await loadLockContract();
+        const account = await getCurrentAccount();
+        var gas = await window.web3.eth.getGasPrice();
+        var address = $("#wallet_address").val();
+
+        let answer1 = await window.contract.methods
+          .withdrawalStatus(address)
+          .call();
+
+        document.getElementById("with_status").textContent =
+          " Withdrawal Status: [" + answer1 + "]";
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    async function change_withdraw_status() {
+      try {
+        window.contract = await loadLockContract();
+        const account = await getCurrentAccount();
+        var gas = await window.web3.eth.getGasPrice();
+        var address = $("#wallet_addresses").val();
+        console.log(address);
+        var str_array = address.split(",");
+        var addresses = [];
+        addresses.push(address);
+        console.log(str_array);
+        let answer1 = await window.contract.methods
+          .changeWithdrawalStatus(str_array)
+          .send({ from: account, gasPrice: gas })
+          .on("transactionHash", function (hash) {
+            console.log(hash);
+            alert(
+              "Transaction successful, wait for few seconds for automatic reload"
+            );
+          })
+          .on("receipt", function (receipt) {
+            location.reload();
+          })
+          .on("error", function (error, receipt) {
+            console.log(error);
+            alert(
+              "Please pass a single address or multiple address seperated by comma"
+            );
+          });
+        return;
+        console.log(answer1);
+      } catch (err) {
+        console.log(err);
+        alert(
+          "Please pass a single address or multiple address seperated by comma"
+        );
       }
     }
 

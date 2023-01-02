@@ -140,7 +140,7 @@
               <a href="indexxusd+_test.html">Indexx USD+ Test</a>
               <br />
               <a href="indexxusd+_prod.html">Indexx USD+ Production(iUSD+)-BSC</a>
-              <hr/>
+              <hr />
               <a href="indexxusd+_prod_eth.html">Indexx USD+ Production(iUSD+)-ETH</a>
             </li>
             <li>
@@ -151,21 +151,17 @@
               >
               <hr />
               <a href="indexxexchange_prod_eth.html"
-                >Indexx Exchange Production(iNEX)-ETH</a
-              >
+                >Indexx Exchange Production(iNEX)-ETH</a>
             </li>
             <li>
-              <a href="indexxphoenix_test.html" class="active-link"
-                >Indexx Phoenix Test</a
-              >
+              <a href="indexxphoenix_test.html">Indexx Phoenix Test</a>
               <br />
-              <a href="indexxphoenix_prod.html"
+              <a href="indexxphoenix_prod.html" 
                 >Indexx Phoenix Production(INXP)-BSC</a
               >
               <hr />
-              <a href="indexxphoenix_prod_eth.html"
-              >Indexx Phoenix Production(INXP)-ETH</a
-            >
+              <a href="indexxphoenix_prod_eth.html" class="active-link"
+                >Indexx Phoenix Production(INXP)-ETH</a>
             </li>
           </ul>
         </div>
@@ -175,7 +171,7 @@
 
   <body>
     <div class="nine">
-      <h1>Indexx Phoenix Testing<span>Admin Dashboard</span></h1>
+      <h1>Indexx Phoenix Production<span>Admin Dashboard</span></h1>
       <button style="margin-left: 40%" onclick="load()">Connect Wallet</button
       ><br />
     </div>
@@ -184,7 +180,7 @@
       <tbody>
         <tr>
           <td>1. Contract Address:</td>
-          <td>0x39875930564e5173C8373DEb6508788cCE7C8f4C</td>
+          <td>0x3A0bbd58EBEBBcF6F8e6cAd408f17f59Fab68836</td>
         </tr>
 
         <tr>
@@ -273,7 +269,7 @@
       <tbody>
         <tr>
           <td>10. Contract Address:</td>
-          <td>0x6AA9c59FcAB862fD2fb59F7861a1051918FA7304</td>
+          <td>0x07725EfbC87E293EEeD1c2438c4b7f7A007fF850</td>
         </tr>
         <tr>
           <td>11. ICO Admin:</td>
@@ -384,7 +380,7 @@
       <tbody>
         <tr>
           <td>22. Contract Address:</td>
-          <td>0x6d70437e526A6BF6eE88ADdAB857B3797babd8Ee</td>
+          <td>0x82245b856CDE4Bed488D5B0227d27beCDcd81393</td>
         </tr>
 
         <tr>
@@ -1073,9 +1069,9 @@
       },
     ];
 
-    const tokenAddress = "0x39875930564e5173C8373DEb6508788cCE7C8f4C";
-    // const icoAddress = "0x6AA9c59FcAB862fD2fb59F7861a1051918FA7304";
-    // const lockAddress = "0x6d70437e526A6BF6eE88ADdAB857B3797babd8Ee";
+    const tokenAddress = "0x3A0bbd58EBEBBcF6F8e6cAd408f17f59Fab68836";
+    // const icoAddress = "0x07725EfbC87E293EEeD1c2438c4b7f7A007fF850";
+    // const lockAddress = "0x82245b856CDE4Bed488D5B0227d27beCDcd81393";
 
     async function schedule() {
       try {
@@ -1190,23 +1186,10 @@
         let n = ethereum.chainId;
         console.log("i am here", n);
         try {
-          if (n != "0x61") {
+          if (n != "0x1") {
             await window.ethereum.request({
-              method: "wallet_addEthereumChain",
-              params: [
-                {
-                  chainId: "0x61",
-                  chainName: "BSC Testnet",
-                  rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545"],
-                  blockExplorerUrls: [
-                    "https://explorer.binance.org/smart-testnet",
-                  ],
-                  nativeCurrency: {
-                    symbol: "BNB",
-                    decimals: 18,
-                  },
-                },
-              ],
+              method: "wallet_switchEthereumChain",
+              params: [{ chainId: "0x1" }],
             });
           }
           const accounts = await ethereum
