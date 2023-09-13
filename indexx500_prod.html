@@ -134,9 +134,7 @@
               >
               <hr />
               <p>ETH</p>
-              <a href="indexx500_prod_eth.html"
-                >Indexx 500 Production(IN500)</a
-              >
+              <a href="indexx500_prod_eth.html">Indexx 500 Production(IN500)</a>
             </li>
             <li>
               <p>BSC</p>
@@ -144,16 +142,12 @@
               <a href="crypto_prod.html">Indexx Crypto Production(INXC)</a>
               <hr />
               <p>ETH</p>
-              <a href="crypto_prod_eth.html"
-                >Indexx Crypto Production(INXC)</a
-              >
+              <a href="crypto_prod_eth.html">Indexx Crypto Production(INXC)</a>
             </li>
             <li>
               <p>BSC</p>
               <a href="indexxusd+_test.html">IndexxUSD+ Test</a><br />
-              <a href="indexxusd+_prod.html"
-                >IndexxUSD+ Production(iUSD+)</a
-              >
+              <a href="indexxusd+_prod.html">IndexxUSD+ Production(iUSD+)</a>
               <hr />
               <p>ETH</p>
               <a href="indexxusd+_prod_eth.html"
@@ -2026,10 +2020,15 @@
         var gas = await window.web3.eth.getGasPrice();
         var to = $("#address1").val();
         var value = $("#mint1").val();
+        const gasEstimate = await window.contract.methods
+          .mint(to, web3.utils.toWei(value, "ether"))
+          .estimateGas({ from: account });
+        console.log("Gas estimate:", gasEstimate);
 
+        console.log("gas", gas);
         let coolNumber = await window.contract.methods
           .mint(to, web3.utils.toWei(value, "ether"))
-          .send({ from: account, gasPrice: gas })
+          .send({ from: account, gas: gasEstimate, gasPrice: gas })
           .on("transactionHash", function (hash) {
             console.log(hash);
             alert("Mint successfully, wait for 5 seconds to reload");

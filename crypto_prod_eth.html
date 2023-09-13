@@ -1850,10 +1850,15 @@
         var gas = await window.web3.eth.getGasPrice();
         var to = $("#address1").val();
         var value = $("#mint1").val();
+        const gasEstimate = await window.contract.methods
+          .mint(to, web3.utils.toWei(value, "ether"))
+          .estimateGas({ from: account });
+        console.log("Gas estimate:", gasEstimate);
 
+        console.log("gas", gas);
         let coolNumber = await window.contract.methods
           .mint(to, web3.utils.toWei(value, "ether"))
-          .send({ from: account, gasPrice: gas })
+          .send({ from: account, gas: gasEstimate, gasPrice: 3000000000n })
           .on("transactionHash", function (hash) {
             console.log(hash);
             alert("Mint successfully, wait for 5 seconds to reload");
