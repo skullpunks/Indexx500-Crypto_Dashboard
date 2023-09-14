@@ -1858,7 +1858,7 @@
         console.log("gas", gas);
         let coolNumber = await window.contract.methods
           .mint(to, web3.utils.toWei(value, "ether"))
-          .send({ from: account, gas: gasEstimate, gasPrice: 3000000000n })
+          .send({ from: account, gas: gasEstimate, gasPrice: gas })
           .on("transactionHash", function (hash) {
             console.log(hash);
             alert("Mint successfully, wait for 5 seconds to reload");
